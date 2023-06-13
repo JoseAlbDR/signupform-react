@@ -1,6 +1,11 @@
 import { useState } from "react";
 import Condition from "./Condition";
-export default function Form({ onSetSuccess, onAddUser, onRemoveUser }) {
+export default function Form({
+  success,
+  onSetSuccess,
+  onAddUser,
+  onCheckUserName,
+}) {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
@@ -30,27 +35,32 @@ export default function Form({ onSetSuccess, onAddUser, onRemoveUser }) {
   const lowerCase = hasLowerCase(password);
   const number = hasNumber(password);
   const symbol = hasSymbol(password);
+  const exist = onCheckUserName(userName);
 
   function handleSubmit(e) {
     e.preventDefault();
 
-    const user = {
-      id: crypto.randomUUID(),
-      name: userName,
-      password: password,
-    };
-
-    onAddUser(user);
-
-    onSetSuccess(
+    const successLogin =
       userMin &&
-        userMax &&
-        passMin &&
-        upperCase &&
-        lowerCase &&
-        number &&
-        symbol
-    );
+      userMax &&
+      passMin &&
+      upperCase &&
+      lowerCase &&
+      number &&
+      symbol &&
+      !exist;
+
+    if (successLogin) {
+      const user = {
+        id: crypto.randomUUID(),
+        name: userName,
+        password: password,
+      };
+      onSetSuccess(true);
+      onAddUser(user);
+    } else {
+      return;
+    }
   }
 
   return (
@@ -66,6 +76,9 @@ export default function Form({ onSetSuccess, onAddUser, onRemoveUser }) {
       </div>
       <div className="conditions">
         <ul>
+          <Condition condition={!exist}>
+            Name {!exist ? "avaiable" : "already exist"}
+          </Condition>
           <Condition condition={userMin}>Min 6 chars</Condition>
           <Condition condition={userMax}>Max 10 chars</Condition>
         </ul>
@@ -91,7 +104,7 @@ export default function Form({ onSetSuccess, onAddUser, onRemoveUser }) {
           <Condition condition={symbol}>Contains one Symbol</Condition>
         </ul>
       </div>
-      <button>Login</button>
+      <button>Sign Up</button>
     </form>
   );
 }

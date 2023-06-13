@@ -8,6 +8,7 @@ function App() {
   const [users, setUsers] = useState([]);
 
   function handleSetSuccess(success) {
+    console.log(success);
     setSuccess(success);
   }
 
@@ -20,11 +21,20 @@ function App() {
       setUsers((users) => users.filter((user) => user.id !== id));
   }
 
+  function handleCheckUserName(name) {
+    return users.some((user) => user.name === name);
+  }
+
   return (
     <div className="container">
       <h1>Sign Up</h1>
       {!success && (
-        <Form onSetSuccess={handleSetSuccess} onAddUser={handleAddUser}></Form>
+        <Form
+          success={success}
+          onSetSuccess={handleSetSuccess}
+          onAddUser={handleAddUser}
+          onCheckUserName={handleCheckUserName}
+        ></Form>
       )}
       {success && (
         <>
