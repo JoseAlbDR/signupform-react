@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Condition from "./Condition";
-export default function Form({ onSetCheck }) {
+export default function Form({ onSetSuccess }) {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
@@ -33,7 +33,7 @@ export default function Form({ onSetCheck }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    onSetCheck(
+    onSetSuccess(
       userMin &&
         userMax &&
         passMin &&

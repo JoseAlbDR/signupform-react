@@ -3,19 +3,21 @@ import Form from "./Form";
 import { useState } from "react";
 
 function App() {
-  const [check, setCheck] = useState(false);
+  const [success, setSuccess] = useState(false);
 
-  function handleSetCheck(check) {
-    setCheck(check);
+  function handleSetSuccess(success) {
+    setSuccess(success);
   }
   return (
     <div className="container">
       <h1>Sign Up</h1>
-      {!check && <Form onSetCheck={handleSetCheck}></Form>}
-      {check && (
+      {!success && <Form onSetSuccess={handleSetSuccess}></Form>}
+      {success && (
         <>
           <h1 className="green">Success!!!</h1>
-          <button onClick={() => setCheck((check) => !check)}>Back</button>
+          <button onClick={() => setSuccess((success) => !success)}>
+            Back
+          </button>
         </>
       )}
     </div>
