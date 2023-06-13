@@ -24,11 +24,14 @@ function App() {
       {success && (
         <>
           <h1 className="green">Success!!!</h1>
-          <ul>
-            {users.map((user) => (
-              <User key={user.id} name={user.name} />
-            ))}
-          </ul>
+          <div class="userlist">
+            <h3>User List</h3>
+            <ul>
+              {users.map((user) => (
+                <User key={user.id} name={user.name} />
+              ))}
+            </ul>
+          </div>
           <button onClick={() => setSuccess((success) => !success)}>
             Back
           </button>

@@ -1,7 +1,7 @@
 export default function Condition({ children, condition }) {
   return (
-    <p className={condition ? "green" : "red"}>
+    <li className={condition ? "green" : "red"}>
       {condition ? "✔" : "❌"} {children}
-    </p>
+    </li>
   );
 }

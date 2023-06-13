@@ -1,3 +1,10 @@
-export default function User({ name }) {
-  return <li>{name}</li>;
+export default function User({ key, name }) {
+  return (
+    <li key={key}>
+      {name}
+      <span>
+        <button className="remove">❌</button>
+      </span>
+    </li>
+  );
 }

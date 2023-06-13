@@ -65,8 +65,10 @@ export default function Form({ onSetSuccess, onAddUser }) {
         />
       </div>
       <div className="conditions">
-        <Condition condition={userMin}>Min 6 chars</Condition>
-        <Condition condition={userMax}>Max 10 chars</Condition>
+        <ul>
+          <Condition condition={userMin}>Min 6 chars</Condition>
+          <Condition condition={userMax}>Max 10 chars</Condition>
+        </ul>
       </div>
       <div className="password">
         <label>Password:</label>
@@ -77,15 +79,17 @@ export default function Form({ onSetSuccess, onAddUser }) {
         />
       </div>
       <div className="conditions">
-        <Condition condition={passMin}>Min 10 chars</Condition>
-        <Condition condition={upperCase}>
-          Contains one UpperCase Letter
-        </Condition>
-        <Condition condition={lowerCase}>
-          Contains one LowerCase Letter
-        </Condition>
-        <Condition condition={number}>Contains one Number</Condition>
-        <Condition condition={symbol}>Contains one Symbol</Condition>
+        <ul>
+          <Condition condition={passMin}>Min 10 chars</Condition>
+          <Condition condition={upperCase}>
+            Contains one UpperCase Letter
+          </Condition>
+          <Condition condition={lowerCase}>
+            Contains one LowerCase Letter
+          </Condition>
+          <Condition condition={number}>Contains one Number</Condition>
+          <Condition condition={symbol}>Contains one Symbol</Condition>
+        </ul>
       </div>
       <button>Login</button>
     </form>
