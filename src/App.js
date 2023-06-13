@@ -15,6 +15,11 @@ function App() {
     setUsers((users) => [...users, user]);
   }
 
+  function handleRemoveUser(id, name) {
+    window.confirm(`Are you sure you want to remove ${name}`) &&
+      setUsers((users) => users.filter((user) => user.id !== id));
+  }
+
   return (
     <div className="container">
       <h1>Sign Up</h1>
@@ -24,14 +29,22 @@ function App() {
       {success && (
         <>
           <h1 className="green">Success!!!</h1>
-          <div class="userlist">
-            <h3>User List</h3>
-            <ul>
-              {users.map((user) => (
-                <User key={user.id} name={user.name} />
-              ))}
-            </ul>
-          </div>
+          {users.length > 0 && (
+            <div className="userlist">
+              <h3>User List</h3>
+              <ul>
+                {users.map((user) => (
+                  <User
+                    key={user.id}
+                    id={user.id}
+                    name={user.name}
+                    onRemoveUser={handleRemoveUser}
+                  />
+                ))}
+              </ul>
+            </div>
+          )}
+
           <button onClick={() => setSuccess((success) => !success)}>
             Back
           </button>

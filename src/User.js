@@ -1,9 +1,11 @@
-export default function User({ key, name }) {
+export default function User({ id, name, onRemoveUser }) {
   return (
-    <li key={key}>
+    <li>
       {name}
       <span>
-        <button className="remove">❌</button>
+        <button className="remove" onClick={() => onRemoveUser(id, name)}>
+          ❌
+        </button>
       </span>
     </li>
   );

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Condition from "./Condition";
-export default function Form({ onSetSuccess, onAddUser }) {
+export default function Form({ onSetSuccess, onAddUser, onRemoveUser }) {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
