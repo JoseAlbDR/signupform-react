@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Condition from "./Condition";
-export default function Form({ onSetSuccess }) {
+export default function Form({ onSetSuccess, onAddUser }) {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
@@ -33,6 +33,15 @@ export default function Form({ onSetSuccess }) {
 
   function handleSubmit(e) {
     e.preventDefault();
+
+    const user = {
+      id: crypto.randomUUID(),
+      name: userName,
+      password: password,
+    };
+
+    onAddUser(user);
+
     onSetSuccess(
       userMin &&
         userMax &&
