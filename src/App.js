@@ -8,7 +8,6 @@ function App() {
   const [users, setUsers] = useState([]);
 
   function handleSetSuccess(success) {
-    console.log(success);
     setSuccess(success);
   }
 
@@ -36,6 +35,7 @@ function App() {
           onCheckUserName={handleCheckUserName}
         ></Form>
       )}
+      {/* Successfull Sign up */}
       {success && (
         <>
           <h1 className="green">Success!!!</h1>
@@ -54,7 +54,7 @@ function App() {
               </ul>
             </div>
           )}
-
+          {/* Back to Sign up form */}
           <button onClick={() => setSuccess((success) => !success)}>
             Back
           </button>

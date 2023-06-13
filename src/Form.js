@@ -1,11 +1,6 @@
 import { useState } from "react";
 import Condition from "./Condition";
-export default function Form({
-  success,
-  onSetSuccess,
-  onAddUser,
-  onCheckUserName,
-}) {
+export default function Form({ onSetSuccess, onAddUser, onCheckUserName }) {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
@@ -27,6 +22,8 @@ export default function Form({
     const format = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
     return format.test(str);
   }
+
+  // Conditions check
   const userLength = userName.length;
   const userMin = userLength >= 6;
   const userMax = userMin && userLength <= 10;
@@ -50,17 +47,16 @@ export default function Form({
       symbol &&
       !exist;
 
-    if (successLogin) {
-      const user = {
-        id: crypto.randomUUID(),
-        name: userName,
-        password: password,
-      };
-      onSetSuccess(true);
-      onAddUser(user);
-    } else {
-      return;
-    }
+    // Guard clause
+    if (!successLogin) return;
+
+    const user = {
+      id: crypto.randomUUID(),
+      name: userName,
+      password: password,
+    };
+    onSetSuccess(true);
+    onAddUser(user);
   }
 
   return (
